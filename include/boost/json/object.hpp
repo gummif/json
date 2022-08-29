@@ -1166,6 +1166,53 @@ public:
     std::size_t
     erase(string_view key) noexcept;
 
+    /** Erase an element
+
+        Remove the element pointed to by `pos`, which must
+        be valid and dereferenceable. Thus the @ref end()
+        iterator (which is valid but cannot be dereferenced)
+        cannot be used as a value for `pos`.
+        References and iterators to the erased element are
+        invalidated. Other iterators and references are not
+        invalidated. TODO x
+
+        @par Complexity
+        Constant on average, worst case linear in @ref size().
+
+        @par Exception Safety
+        No-throw guarantee.
+
+        @return An iterator following the last removed element.
+
+        @param pos An iterator pointing to the element to be
+        removed.
+    */
+    BOOST_JSON_DECL
+    iterator
+    stable_erase(const_iterator pos) noexcept;
+
+    /** Erase an element
+
+        Remove the element which matches `key`, if it exists.
+        References and iterators to the erased element are
+        invalidated. Other iterators and references are not
+        invalidated. TODO
+
+        @par Complexity
+        Constant on average, worst case linear in @ref size().
+
+        @par Exception Safety
+        No-throw guarantee.
+
+        @return The number of elements removed, which will
+        be either 0 or 1.
+
+        @param key The key to match.
+    */
+    BOOST_JSON_DECL
+    std::size_t
+    stable_erase(string_view key) noexcept;
+
     /** Swap two objects.
 
         Exchanges the contents of this object with another
